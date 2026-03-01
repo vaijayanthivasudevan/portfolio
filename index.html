@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaijayanthi Vasudevan — Food Safety Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #EEF0F7;
+    --warm-white: #F6F7FB;
+    --terracotta: #1B3A6B;
+    --terracotta-dark: #122848;
+    --saffron: #C9A84C;
+    --olive: #2E4A7A;
+    --charcoal: #0D1520;
+    --mid: #4A5A78;
+    --light-brown: #A0B0CC;
+    --soft-line: rgba(160,176,204,0.28);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--charcoal); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; cursor: auto; }
+  body.cursor-ready { cursor: none; }
+  body.cursor-ready a, body.cursor-ready button { cursor: none; }
+
+  .cursor { position:fixed; width:10px; height:10px; background:var(--terracotta); border-radius:50%; pointer-events:none; z-index:9999; transition:transform 0.15s ease; mix-blend-mode:multiply; display:none; }
+  .cursor-ring { position:fixed; width:36px; height:36px; border:1px solid var(--terracotta); border-radius:50%; pointer-events:none; z-index:9998; transition:transform 0.35s cubic-bezier(.25,.46,.45,.94), opacity 0.3s; opacity:0.6; display:none; }
+
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:22px 52px; background:rgba(250,247,242,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--soft-line); transition:padding 0.4s; }
+  .nav-logo { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; letter-spacing:0.04em; color:var(--charcoal); text-decoration:none; }
+  .nav-logo span { color:var(--terracotta); }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { font-family:'Jost',sans-serif; font-weight:400; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); text-decoration:none; position:relative; transition:color 0.3s; }
+  .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:var(--terracotta); transition:width 0.3s ease; }
+  .nav-links a:hover { color:var(--terracotta); }
+  .nav-links a:hover::after { width:100%; }
+
+  /* HERO */
+  #hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; }
+  .hero-left { display:flex; flex-direction:column; justify-content:center; padding:120px 60px 80px 80px; position:relative; z-index:2; }
+  .hero-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:28px; animation:fadeUp 0.8s 0.2s both; }
+  .hero-tag span { font-size:0.7rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--terracotta); }
+  .hero-tag::before { content:''; display:block; width:32px; height:1px; background:var(--terracotta); }
+  .hero-name { font-family:'Playfair Display',serif; font-size:clamp(3rem,5vw,5rem); font-weight:900; line-height:1.0; color:var(--charcoal); animation:fadeUp 0.8s 0.35s both; }
+  .hero-name em { display:block; font-style:italic; font-weight:400; color:var(--terracotta); }
+  .hero-desc { margin-top:28px; font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:300; line-height:1.85; color:var(--mid); max-width:440px; animation:fadeUp 0.8s 0.5s both; }
+  .hero-actions { margin-top:44px; display:flex; gap:18px; animation:fadeUp 0.8s 0.65s both; }
+  .btn-primary { padding:14px 36px; background:var(--terracotta); color:#fff; font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; border:none; cursor:none; transition:background 0.3s, transform 0.2s; display:inline-block; }
+  .btn-primary:hover { background:var(--terracotta-dark); transform:translateY(-2px); }
+  .btn-outline { padding:14px 36px; background:transparent; color:var(--charcoal); font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; border:1px solid var(--light-brown); cursor:none; transition:border-color 0.3s, color 0.3s, transform 0.2s; display:inline-block; }
+  .btn-outline:hover { border-color:var(--charcoal); color:var(--terracotta); transform:translateY(-2px); }
+  .hero-stats { margin-top:56px; display:flex; gap:48px; animation:fadeUp 0.8s 0.8s both; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--terracotta); display:block; line-height:1; }
+  .stat-label { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin-top:4px; }
+  .hero-scroll-hint { position:absolute; bottom:36px; left:80px; z-index:5; display:flex; align-items:center; gap:12px; animation:fadeUp 1s 1.2s both; }
+  .scroll-line { width:1px; height:48px; background:linear-gradient(to bottom, transparent, var(--light-brown)); animation:scrollLine 2s infinite; }
+  .scroll-text { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); writing-mode:vertical-rl; transform:rotate(180deg); }
+  @keyframes scrollLine { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* HERO RIGHT - PHOTO */
+  .hero-right { position:relative; overflow:hidden; animation:fadeIn 1.2s 0.3s both; background:var(--charcoal); }
+  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:center top; opacity:0.85; display:block; }
+  .hero-photo-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,168,76,0.3) 0%, rgba(13,21,32,0.65) 100%); z-index:1; }
+  .hero-location-badge { position:absolute; bottom:44px; left:40px; z-index:3; background:rgba(42,37,32,0.75); backdrop-filter:blur(8px); padding:14px 22px; border-left:3px solid var(--terracotta); }
+  .hero-location-badge .badge-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--saffron); margin-bottom:4px; }
+  .hero-location-badge .badge-value { font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(245,239,224,0.9); font-weight:300; }
+  .hero-open-badge { position:absolute; top:44px; right:36px; z-index:3; background:var(--olive); padding:8px 18px; font-size:0.62rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#fff; }
+
+  section { padding:100px 80px; }
+  .section-header { display:flex; align-items:center; gap:20px; margin-bottom:60px; }
+  .section-tag { font-size:0.65rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--terracotta); white-space:nowrap; }
+  .section-line { flex:1; height:1px; background:var(--soft-line); max-width:80px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.5vw,3.2rem); font-weight:700; line-height:1.15; color:var(--charcoal); }
+  .section-title em { font-style:italic; color:var(--terracotta); }
+
+  /* ABOUT */
+  #about { background:var(--cream); display:grid; grid-template-columns:1fr 1.4fr; gap:80px; align-items:center; }
+  .about-card { background:var(--charcoal); color:var(--cream); padding:50px 44px; position:relative; overflow:hidden; }
+  .about-card::after { content:'"'; position:absolute; top:-20px; right:20px; font-family:'Playfair Display',serif; font-size:14rem; color:rgba(255,255,255,0.04); line-height:1; pointer-events:none; }
+  .about-accent-box { position:absolute; top:-18px; right:-18px; width:80px; height:80px; background:var(--saffron); z-index:-1; }
+  .about-card-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.5rem; font-weight:300; line-height:1.7; color:rgba(245,239,224,0.9); }
+  .about-card-attr { margin-top:24px; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); }
+  .about-text { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; line-height:1.95; color:var(--mid); margin-bottom:20px; }
+  .about-text strong { font-weight:600; color:var(--charcoal); }
+  .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:32px; }
+  .skill-pill { display:flex; align-items:center; gap:10px; padding:11px 16px; border:1px solid var(--soft-line); background:var(--warm-white); font-size:0.73rem; font-weight:400; letter-spacing:0.04em; color:var(--charcoal); transition:border-color 0.3s, background 0.3s; }
+  .skill-pill:hover { border-color:var(--terracotta); background:rgba(196,98,45,0.04); }
+  .skill-dot { width:6px; height:6px; border-radius:50%; background:var(--terracotta); flex-shrink:0; }
+
+  /* EXPERIENCE */
+  #experience { background:var(--warm-white); }
+  .experience-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+  .exp-card { background:var(--cream); padding:44px 40px; position:relative; overflow:hidden; transition:background 0.4s; }
+  .exp-card:hover { background:#EEE5D4; }
+  .exp-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--terracotta); transition:height 0.4s ease; }
+  .exp-card:hover::before { height:100%; }
+  .exp-number { font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:900; color:rgba(196,162,130,0.2); line-height:1; margin-bottom:8px; }
+  .exp-date { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:14px; }
+  .exp-title { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--charcoal); margin-bottom:4px; }
+  .exp-company { font-size:0.78rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); margin-bottom:20px; }
+  .exp-desc { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:300; line-height:1.85; color:var(--mid); }
+  .exp-desc li { margin-bottom:8px; margin-left:16px; }
+  .exp-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .exp-tag { padding:4px 12px; background:rgba(196,98,45,0.1); color:var(--terracotta-dark); font-size:0.65rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; }
+
+  /* PROJECTS */
+  #projects { background:var(--charcoal); color:var(--cream); }
+  #projects .section-title { color:var(--cream); }
+  #projects .section-title em { color:var(--saffron); }
+  .projects-layout { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; }
+  .project-card { position:relative; overflow:hidden; min-height:460px; display:flex; flex-direction:column; justify-content:flex-end; padding:40px 36px; cursor:none; }
+  .project-card:nth-child(1) { background:linear-gradient(160deg, #0D1520 0%, #1B3A6B 100%); }
+  .project-card:nth-child(2) { background:linear-gradient(160deg, #091220 0%, #0F2A52 100%); }
+  .project-card:nth-child(3) { background:linear-gradient(160deg, #101828 0%, #1A3A70 100%); }
+  .project-card:nth-child(4) { background:linear-gradient(160deg, #0A1428 0%, #163060 100%); }
+  .project-card:nth-child(5) { background:linear-gradient(160deg, #0D1A30 0%, #1E4080 100%); }
+  .project-num { font-family:'Playfair Display',serif; font-size:5rem; font-weight:900; color:rgba(255,255,255,0.06); position:absolute; top:16px; right:20px; line-height:1; }
+  .project-icon { font-size:2.5rem; margin-bottom:16px; display:block; transition:transform 0.4s; }
+  .project-card:hover .project-icon { transform:scale(1.15) rotate(-5deg); }
+  .project-card-bg { position:absolute; inset:0; opacity:0; transition:opacity 0.5s; background:rgba(0,0,0,0.15); }
+  .project-card:hover .project-card-bg { opacity:1; }
+  .project-role { font-size:0.62rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--saffron); margin-bottom:10px; }
+  .project-title { font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:14px; }
+  .project-desc { font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.72); max-height:0; overflow:hidden; opacity:0; transition:max-height 0.5s ease, opacity 0.4s; }
+  .project-card:hover .project-desc { max-height:200px; opacity:1; }
+  .project-arrow { margin-top:20px; width:36px; height:36px; border:1px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.7); font-size:1rem; opacity:0; transform:translateY(10px); transition:all 0.4s; }
+  .project-card:hover .project-arrow { opacity:1; transform:translateY(0); background:var(--terracotta); color:#fff; border-color:var(--terracotta); }
+  .projects-wide { grid-column: span 1; }
+
+  /* CERTIFICATIONS */
+  #certifications { background:var(--cream); position:relative; overflow:hidden; }
+  #certifications::before { content:'CERTIFIED'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Playfair Display',serif; font-size:14vw; font-weight:900; color:rgba(196,162,130,0.06); white-space:nowrap; pointer-events:none; letter-spacing:0.1em; }
+  .certs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; position:relative; z-index:2; }
+  .cert-card { padding:32px 28px; background:var(--warm-white); border-bottom:3px solid transparent; transition:border-color 0.3s, transform 0.3s; }
+  .cert-card:hover { border-color:var(--terracotta); transform:translateY(-4px); }
+  .cert-badge { width:44px; height:44px; background:var(--terracotta); display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:1.1rem; }
+  .cert-org { font-size:0.6rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:8px; }
+  .cert-title { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; color:var(--charcoal); line-height:1.4; }
+  .cert-status { margin-top:8px; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--olive); font-weight:500; }
+
+  /* EDUCATION */
+  #education { background:var(--warm-white); display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .edu-timeline { position:relative; padding-left:28px; margin-top:44px; }
+  .edu-timeline::before { content:''; position:absolute; left:0; top:8px; bottom:0; width:1px; background:var(--soft-line); }
+  .edu-item { position:relative; margin-bottom:44px; }
+  .edu-item::before { content:''; position:absolute; left:-33px; top:8px; width:10px; height:10px; border-radius:50%; background:var(--warm-white); border:2px solid var(--terracotta); }
+  .edu-year { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:8px; }
+  .edu-degree { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--charcoal); margin-bottom:4px; }
+  .edu-school { font-size:0.78rem; font-weight:500; letter-spacing:0.06em; color:var(--mid); margin-bottom:6px; }
+  .edu-cgpa { font-size:0.72rem; color:var(--terracotta); font-weight:500; margin-bottom:10px; }
+  .edu-desc { font-family:'Cormorant Garamond',serif; font-size:0.95rem; line-height:1.8; color:var(--mid); font-weight:300; }
+  .lang-block { margin-top:48px; }
+  .lang-item-wrap { margin-bottom:28px; }
+  .lang-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+  .lang-name { font-size:0.82rem; font-weight:400; color:var(--charcoal); letter-spacing:0.05em; }
+  .lang-level { font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--mid); }
+  .lang-bar { width:100%; height:2px; background:var(--soft-line); position:relative; }
+  .lang-fill { position:absolute; left:0; top:0; bottom:0; background:var(--terracotta); transition:width 1.2s cubic-bezier(.25,.46,.45,.94); width:0; }
+
+  /* CONTACT */
+  #contact { background:var(--charcoal); display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0; min-height:60vh; }
+  .contact-left { padding:100px 80px; display:flex; flex-direction:column; justify-content:center; }
+  .contact-left .section-title { color:var(--cream); margin-bottom:24px; }
+  .contact-left .section-title em { color:var(--saffron); }
+  .contact-tagline { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; line-height:1.8; color:rgba(245,239,224,0.65); margin-bottom:44px; }
+  .contact-detail { display:flex; align-items:flex-start; gap:18px; margin-bottom:28px; }
+  .contact-icon { width:36px; height:36px; background:rgba(245,239,224,0.07); border:1px solid rgba(245,239,224,0.15); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+  .contact-info-label { font-size:0.6rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:4px; }
+  .contact-info-value { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:300; color:var(--cream); }
+  .contact-info-value a { color:inherit; text-decoration:none; transition:color 0.3s; }
+  .contact-info-value a:hover { color:var(--saffron); }
+  .contact-right { background:var(--terracotta); display:flex; flex-direction:column; justify-content:center; padding:100px 80px; position:relative; overflow:hidden; }
+  .contact-right::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.06); }
+  .contact-right::after { content:''; position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; border-radius:50%; background:rgba(0,0,0,0.1); }
+  .contact-cta { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:24px; position:relative; z-index:2; }
+  .contact-cta em { font-style:italic; font-weight:400; }
+  .contact-sub { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:300; color:rgba(255,255,255,0.8); line-height:1.8; margin-bottom:36px; position:relative; z-index:2; }
+  .contact-right .btn-primary { background:var(--charcoal); position:relative; z-index:2; }
+  .contact-right .btn-primary:hover { background:#1a1510; }
+
+  footer { background:#1A1510; padding:32px 80px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); }
+  .footer-copy { font-size:0.7rem; letter-spacing:0.1em; color:rgba(245,239,224,0.3); }
+  .footer-name { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:rgba(245,239,224,0.6); }
+  .footer-name span { color:var(--terracotta); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  .reveal { opacity:1; transform:none; }
+  .reveal.anim { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.anim.visible { opacity:1; transform:none; }
+
+  @media(max-width:900px){
+    nav{padding:18px 24px;}
+    .nav-links{display:none;}
+    #hero{grid-template-columns:1fr;}
+    .hero-right{min-height:50vh;}
+    .hero-left{padding:100px 24px 60px;}
+    section{padding:70px 24px;}
+    #about,#education,#contact{grid-template-columns:1fr;gap:40px;}
+    .projects-layout,.experience-grid{grid-template-columns:1fr;}
+    .certs-grid{grid-template-columns:1fr 1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    footer{padding:24px;flex-direction:column;gap:10px;text-align:center;}
+    .contact-left,.contact-right{padding:60px 24px;}
+    #certifications::before{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">V<span>.</span>Vasudevan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><span>Food Safety Professional</span></div>
+    <h1 class="hero-name">
+      Vaijayanthi<br>
+      <em>Vasudevan</em>
+    </h1>
+    <p class="hero-desc">
+      I've spent the last few years in kitchens, manufacturing floors, and canteens — making sure the food people eat is actually safe. HACCP, audits, FSSAI, restaurant setups — that's my world, and I genuinely love it.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">2+</span>
+        <div class="stat-label">Years in the field</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">12+</span>
+        <div class="stat-label">Monthly site visits</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3+</span>
+        <div class="stat-label">Outlets set up</div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="photo.png" class="hero-photo" alt="Vaijayanthi Vasudevan" />
+    <div class="hero-photo-overlay"></div>
+    <div class="hero-open-badge">Open to Opportunities</div>
+    <div class="hero-location-badge">
+      <div class="badge-label">Based in</div>
+      <div class="badge-value">Chennai, India · Open to Relocation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div style="position:relative;display:inline-block;width:100%;">
+      <div class="about-accent-box"></div>
+      <div class="about-card">
+        <p class="about-card-quote">"Food safety isn't paperwork — it's the difference between someone going home healthy or not. That's why I take it seriously."</p>
+        <div class="about-card-attr">— Vaijayanthi Vasudevan</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-content reveal">
+    <div class="section-header">
+      <span class="section-tag">About Me</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title">Food Safety,<br><em>Up Close</em></h2>
+    <p class="about-text" style="margin-top:28px;">
+      Hi, I'm Vaijayanthi — a food safety professional based in Chennai with a Master's in Food Processing Technology. I started out curious about how food is made and ended up obsessing over how to make it safe at every step of the way.
+    </p>
+    <p class="about-text">
+      From working in labs till 8pm to writing audit reports that actually make a difference — I've done it all. I'm comfortable with the technical side (HACCP, GMP, FSSAI) and the people side (training food handlers, working with kitchen teams). Right now I'm looking for my next challenge, ideally somewhere the food safety culture is taken seriously.
+    </p>
+    <div class="skills-grid">
+      <div class="skill-pill"><div class="skill-dot"></div>HACCP & CCP Monitoring</div>
+      <div class="skill-pill"><div class="skill-dot"></div>FSSAI Compliance</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Kitchen Hygiene Inspections</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Allergen Management</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Audit Report Writing</div>
+      <div class="skill-pill"><div class="skill-dot"></div>SOP & Policy Drafting</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Food Handler Training</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Product Formulation & R&D</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-tag">Career</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Where I've <em>Been</em></h2>
+  </div>
+  <div class="experience-grid">
+    <div class="exp-card reveal">
+      <div class="exp-number">01</div>
+      <div class="exp-date">Feb 2024 — Mar 2026</div>
+      <div class="exp-title">Food Consultant</div>
+      <div class="exp-company">Food Maven Pvt. Ltd. · Chennai, India</div>
+      <ul class="exp-desc">
+        <li>Ran routine hygiene inspections across kitchens, storage areas and food prep zones — checking against HACCP and FSSAI standards.</li>
+        <li>Led 12+ monthly visits to a sweets & savouries manufacturer, strengthening hygiene documentation and allergen controls.</li>
+        <li>Handled FSSAI licensing and renewals end-to-end for multiple food businesses.</li>
+        <li>Trained food handlers on personal hygiene, cross-contamination prevention, and sanitation SOPs.</li>
+        <li>Standardized CCP/OPRP checks and sanitation logs to make audit readiness the norm, not a scramble.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">HACCP</span>
+        <span class="exp-tag">FSSAI</span>
+        <span class="exp-tag">Audits</span>
+        <span class="exp-tag">Training</span>
+        <span class="exp-tag">GMP/GHP</span>
+      </div>
+    </div>
+    <div class="exp-card reveal" style="transition-delay:0.1s">
+      <div class="exp-number">02</div>
+      <div class="exp-date">Dec 2022 — Apr 2023</div>
+      <div class="exp-title">Project & Thesis — CSIR-CFTRI</div>
+      <div class="exp-company">Central Food Technological Research Institute · Mysuru, India</div>
+      <ul class="exp-desc">
+        <li>Developed a bioactive-fortified set yogurt using curry leaf crude extract — ran 13+ evaluations across pH, Brix, acidity, viscosity, rheology, DPPH antioxidant activity and sensory panels.</li>
+        <li>Managed full formulation cycles and stability checks under refrigeration to validate shelf life and starter culture viability.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">R&D</span>
+        <span class="exp-tag">Product Development</span>
+        <span class="exp-tag">Analytical Testing</span>
+        <span class="exp-tag">Sensory Evaluation</span>
+      </div>
+    </div>
+    <div class="exp-card reveal" style="transition-delay:0.2s">
+      <div class="exp-number">03</div>
+      <div class="exp-date">Oct 2022 & May 2023</div>
+      <div class="exp-title">Industry Intern</div>
+      <div class="exp-company">K.R. Bakers & Malayalam Foods · Kochi, India</div>
+      <ul class="exp-desc">
+        <li>Assisted in production and quality testing of pickles, jams, sauces, and juices — hands-on with salt, acidity, and Brix testing.</li>
+        <li>Covered processing, packaging, label verification, sanitation, and cold storage operations across both facilities.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">Quality Testing</span>
+        <span class="exp-tag">Production</span>
+        <span class="exp-tag">Packaging</span>
+        <span class="exp-tag">Cold Storage</span>
+      </div>
+    </div>
+    <div class="exp-card reveal" style="transition-delay:0.3s">
+      <div class="exp-number">04</div>
+      <div class="exp-date">Tools & Software</div>
+      <div class="exp-title">What I Work With</div>
+      <div class="exp-company">Day-to-day tools</div>
+      <p class="exp-desc">MS Office · Google Docs · POS Systems (PetPooja) · Swiggy/Zomato aggregator integration · Photographic audit documentation · FSSAI portal · Analytical instruments for pH, Brix, titration</p>
+      <div class="exp-tags">
+        <span class="exp-tag">MS Office</span>
+        <span class="exp-tag">PetPooja</span>
+        <span class="exp-tag">Documentation</span>
+        <span class="exp-tag">Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-tag">Portfolio</span>
+    <div class="section-line" style="background:rgba(196,162,130,0.15)"></div>
+    <h2 class="section-title">Things I've <em>Done</em></h2>
+  </div>
+  <div class="projects-layout">
+    <div class="project-card reveal">
+      <div class="project-card-bg"></div>
+      <div class="project-num">01</div>
+      <span class="project-icon">🏭</span>
+      <div class="project-role">Manufacturing · Ongoing Engagement</div>
+      <div class="project-title">Sweets & Savouries Manufacturer Hygiene Programme</div>
+      <p class="project-desc">12 monthly site visits over a year — assessed facility hygiene, pest control, allergen management, and product handling. Standardized documentation and strengthened audit readiness throughout.</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-card-bg"></div>
+      <div class="project-num">02</div>
+      <span class="project-icon">🍽️</span>
+      <div class="project-role">Hospitality · Setup & Launch</div>
+      <div class="project-title">Cloud Kitchen & Restaurant Setups (3+)</div>
+      <p class="project-desc">Coordinated end-to-end setup of 3+ food outlets — managing vendor timelines, work plans, FSSAI licensing, SOP creation, and operations to get them open on time.</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.2s">
+      <div class="project-card-bg"></div>
+      <div class="project-num">03</div>
+      <span class="project-icon">🏫</span>
+      <div class="project-role">Institutional · Regular Inspections</div>
+      <div class="project-title">Institutional Canteen Compliance Programme</div>
+      <p class="project-desc">Ran monthly inspection visits for institutional canteens — closed recurring non-conformities, brought consistency to hygiene, and improved food handler compliance through targeted training.</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.3s">
+      <div class="project-card-bg"></div>
+      <div class="project-num">04</div>
+      <span class="project-icon">🔬</span>
+      <div class="project-role">R&D · Thesis Project · CSIR-CFTRI</div>
+      <div class="project-title">Bioactive-Fortified Yogurt Development</div>
+      <p class="project-desc">Formulated a set yogurt with curry leaf crude extract and ran 13+ analytical evaluations — pH, acidity, viscosity, antioxidant activity, sensory acceptance. Full shelf-life stability testing under refrigeration.</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.4s; grid-column: span 2;">
+      <div class="project-card-bg"></div>
+      <div class="project-num">05</div>
+      <span class="project-icon">📋</span>
+      <div class="project-role">Documentation · Cross-industry</div>
+      <div class="project-title">FSSAI Licensing, SOPs & Audit Readiness</div>
+      <p class="project-desc">Facilitated end-to-end FSSAI applications and renewals for multiple food establishments. Wrote SOPs staff could actually follow. Built sanitation logs, CCP monitoring checklists, and non-conformity tracking systems that made audits something clients looked forward to rather than feared.</p>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header reveal">
+    <span class="section-tag">Credentials</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Certifications & <em>Training</em></h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card reveal">
+      <div class="cert-badge">🏅</div>
+      <div class="cert-org">Highfield Certifications</div>
+      <div class="cert-title">Level 3 Award — HACCP for Food Manufacturing (RQF)</div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.1s">
+      <div class="cert-badge">📈</div>
+      <div class="cert-org">Highfield Certifications</div>
+      <div class="cert-title">Level 4 HACCP</div>
+      <div class="cert-status">⏳ In Progress</div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.2s">
+      <div class="cert-badge">🌾</div>
+      <div class="cert-org">NSDC · Framework Level 5</div>
+      <div class="cert-title">Plant Baker</div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.3s">
+      <div class="cert-badge">🍯</div>
+      <div class="cert-org">NSDC · Framework Level 4</div>
+      <div class="cert-title">Jam, Jelly & Ketchup Processing Technician</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="education-left reveal">
+    <div class="section-header" style="margin-bottom:10px">
+      <span class="section-tag">Education</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title">Academic <em>Background</em></h2>
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="edu-year">2021 — 2023</div>
+        <div class="edu-degree">Masters of Vocational in Food Processing Technology</div>
+        <div class="edu-school">St. Teresa's College · Ernakulam, Kerala</div>
+        <div class="edu-cgpa">CGPA: 3.85 / 5</div>
+        <p class="edu-desc">Thesis on "Development and Assessment of Bioactive Fortified Yogurt" — conducted at CSIR-CFTRI, Mysuru. Deep dive into food safety, quality control, and processing methods.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2018 — 2021</div>
+        <div class="edu-degree">Bachelor of Vocational in Food Processing & Quality Control</div>
+        <div class="edu-school">Stella Maris College · Chennai, Tamil Nadu</div>
+        <div class="edu-cgpa">CGPA: 7.5 / 10</div>
+        <p class="edu-desc">Foundation in food processing, quality testing, hygiene standards, and dietetics — with hands-on training in quality checks and food safety equipment.</p>
+      </div>
+    </div>
+  </div>
+  <div class="education-right reveal" style="transition-delay:0.15s">
+    <div class="section-header" style="margin-bottom:10px">
+      <span class="section-tag">Languages</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title">How I <em>Communicate</em></h2>
+    <div class="lang-block">
+      <div class="lang-item-wrap">
+        <div class="lang-row"><span class="lang-name">Tamil</span><span class="lang-level">Native</span></div>
+        <div class="lang-bar"><div class="lang-fill" data-width="100%"></div></div>
+      </div>
+      <div class="lang-item-wrap">
+        <div class="lang-row"><span class="lang-name">English</span><span class="lang-level">Bilingual</span></div>
+        <div class="lang-bar"><div class="lang-fill" data-width="92%"></div></div>
+      </div>
+      <div class="lang-item-wrap">
+        <div class="lang-row"><span class="lang-name">Malayalam</span><span class="lang-level">Elementary</span></div>
+        <div class="lang-bar"><div class="lang-fill" data-width="35%"></div></div>
+      </div>
+    </div>
+    <div style="margin-top:48px;">
+      <div class="section-header" style="margin-bottom:22px;">
+        <span class="section-tag">Connect</span>
+        <div class="section-line"></div>
+      </div>
+      <a href="https://www.linkedin.com/in/vaijayanthi-vasudevan-912870165/" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;">Connect on LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <h2 class="section-title">Let's <em>Talk</em></h2>
+    <p class="contact-tagline">I'm actively looking for my next role in food safety, quality assurance, or hospitality compliance. If that sounds like a fit, I'd love to hear from you.</p>
+    <div class="contact-detail">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-info-label">Phone</div>
+        <div class="contact-info-value"><a href="tel:+918056589752">+91 80565 89752</a></div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-info-label">Email</div>
+        <div class="contact-info-value"><span id="emailSpan"></span></div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-info-label">Location</div>
+        <div class="contact-info-value">Chennai, India · Open to relocation including Dubai</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-cta">Ready to work on something <em>meaningful?</em></div>
+    <p class="contact-sub">Whether it's an audit programme, a new kitchen setup, or building food safety culture from scratch — I'm the kind of person who shows up, does the work, and gets it right.</p>
+    <a href="#" id="emailBtn" class="btn-primary">Send Me a Message →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Vaijayanthi Vasudevan. All rights reserved.</div>
+  <div class="footer-name">V<span>.</span>Vasudevan</div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  if(cursor && ring) {
+    document.body.classList.add('cursor-ready');
+    cursor.style.display='block';
+    ring.style.display='block';
+  }
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    if(cursor){cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px';}
+  });
+  function animateRing(){rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='0.3';});el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='0.6';});});
+  // Add animation class only if IntersectionObserver works
+  try {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('anim'));
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.05,rootMargin:'200px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  } catch(e) {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('anim'));
+  }
+  const langObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorA
