@@ -15,7 +15,7 @@
     --saffron: #C9A84C;
     --olive: #2E4A7A;
     --charcoal: #0D1520;
-    --mid: #4A5A78;
+    --mid: #1E2D45;
     --light-brown: #A0B0CC;
     --soft-line: rgba(160,176,204,0.28);
   }
@@ -61,11 +61,11 @@
 
   /* HERO RIGHT - PHOTO */
   .hero-right { position:relative; overflow:hidden; animation:fadeIn 1.2s 0.3s both; background:var(--charcoal); }
-  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:center top; opacity:0.85; display:block; }
-  .hero-photo-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,168,76,0.3) 0%, rgba(13,21,32,0.65) 100%); z-index:1; }
-  .hero-location-badge { position:absolute; bottom:44px; left:40px; z-index:3; background:rgba(42,37,32,0.75); backdrop-filter:blur(8px); padding:14px 22px; border-left:3px solid var(--terracotta); }
+  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:center top; opacity:1; display:block; }
+  .hero-photo-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,168,76,0.3) 0%, rgba(13,21,32,0.35) 100%); z-index:1; }
+  .hero-location-badge { position:absolute; bottom:44px; left:40px; z-index:3; background:rgba(42,37,32,0.75); backdrop-filter:blur(8px); padding:18px 28px; border-left:4px solid var(--terracotta); }
   .hero-location-badge .badge-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--saffron); margin-bottom:4px; }
-  .hero-location-badge .badge-value { font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(245,239,224,0.9); font-weight:300; }
+  .hero-location-badge .badge-value { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:rgba(245,239,224,0.9); font-weight:300; }
   .hero-open-badge { position:absolute; top:44px; right:36px; z-index:3; background:var(--olive); padding:8px 18px; font-size:0.62rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#fff; }
 
   section { padding:100px 80px; }
@@ -82,7 +82,7 @@
   .about-accent-box { position:absolute; top:-18px; right:-18px; width:80px; height:80px; background:var(--saffron); z-index:-1; }
   .about-card-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.5rem; font-weight:300; line-height:1.7; color:rgba(245,239,224,0.9); }
   .about-card-attr { margin-top:24px; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); }
-  .about-text { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; line-height:1.95; color:var(--mid); margin-bottom:20px; }
+  .about-text { font-family:'Cormorant Garamond',serif; font-size:1.28rem; font-weight:300; line-height:1.95; color:var(--mid); margin-bottom:20px; }
   .about-text strong { font-weight:600; color:var(--charcoal); }
   .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:32px; }
   .skill-pill { display:flex; align-items:center; gap:10px; padding:11px 16px; border:1px solid var(--soft-line); background:var(--warm-white); font-size:0.73rem; font-weight:400; letter-spacing:0.04em; color:var(--charcoal); transition:border-color 0.3s, background 0.3s; }
@@ -106,7 +106,7 @@
   .exp-tag { padding:4px 12px; background:rgba(196,98,45,0.1); color:var(--terracotta-dark); font-size:0.65rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; }
 
   /* PROJECTS */
-  #projects { background:var(--charcoal); color:var(--cream); }
+  #projects { background:#1e2d45; color:var(--cream); }
   #projects .section-title { color:var(--cream); }
   #projects .section-title em { color:var(--saffron); }
   .projects-layout { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; }
@@ -123,7 +123,7 @@
   .project-card:hover .project-card-bg { opacity:1; }
   .project-role { font-size:0.62rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--saffron); margin-bottom:10px; }
   .project-title { font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:14px; }
-  .project-desc { font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.72); max-height:0; overflow:hidden; opacity:0; transition:max-height 0.5s ease, opacity 0.4s; }
+  .project-desc { font-family:'Cormorant Garamond',serif; font-size:1.08rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.72); max-height:0; overflow:hidden; opacity:0; transition:max-height 0.5s ease, opacity 0.4s; }
   .project-card:hover .project-desc { max-height:200px; opacity:1; }
   .project-card:nth-child(5) { grid-column: span 2; }
   .project-arrow { margin-top:20px; width:36px; height:36px; border:1px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.7); font-size:1rem; opacity:0; transform:translateY(10px); transition:all 0.4s; }
@@ -138,7 +138,7 @@
   .cert-card:hover { border-color:var(--terracotta); transform:translateY(-4px); }
   .cert-badge { width:44px; height:44px; background:var(--terracotta); display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:1.1rem; }
   .cert-org { font-size:0.6rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:8px; }
-  .cert-title { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; color:var(--charcoal); line-height:1.4; }
+  .cert-title { font-family:'Playfair Display',serif; font-size:1.08rem; font-weight:700; color:var(--charcoal); line-height:1.4; }
   .cert-status { margin-top:8px; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--olive); font-weight:500; }
 
   /* EDUCATION */
@@ -151,7 +151,7 @@
   .edu-degree { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--charcoal); margin-bottom:4px; }
   .edu-school { font-size:0.78rem; font-weight:500; letter-spacing:0.06em; color:var(--mid); margin-bottom:6px; }
   .edu-cgpa { font-size:0.72rem; color:var(--terracotta); font-weight:500; margin-bottom:10px; }
-  .edu-desc { font-family:'Cormorant Garamond',serif; font-size:0.95rem; line-height:1.8; color:var(--mid); font-weight:300; }
+  .edu-desc { font-family:'Cormorant Garamond',serif; font-size:1.08rem; line-height:1.8; color:var(--mid); font-weight:300; }
   .lang-block { margin-top:48px; }
   .lang-item-wrap { margin-bottom:28px; }
   .lang-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
